@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: oklch(var(--background));
+  --color-foreground: oklch(var(--foreground));
+
+  --color-muted: oklch(var(--muted));
+  --color-muted-foreground: oklch(var(--muted-foreground));
+
+  --color-popover: oklch(var(--popover));
+  --color-popover-foreground: oklch(var(--popover-foreground));
+
+  --color-border: oklch(var(--border));
+  --color-input: oklch(var(--input));
+
+  --color-card: oklch(var(--card));
+  --color-card-foreground: oklch(var(--card-foreground));
+
+  --color-primary: oklch(var(--primary));
+  --color-primary-foreground: oklch(var(--primary-foreground));
+
+  --color-secondary: oklch(var(--secondary));
+  --color-secondary-foreground: oklch(var(--secondary-foreground));
+
+  --color-accent: oklch(var(--accent));
+  --color-accent-foreground: oklch(var(--accent-foreground));
+
+  --color-destructive: oklch(var(--destructive));
+  --color-destructive-foreground: oklch(var(--destructive-foreground));
+
+  --color-info: oklch(var(--info));
+  --color-info-foreground: oklch(var(--info-foreground));
+
+  --color-success: oklch(var(--success));
+  --color-success-foreground: oklch(var(--success-foreground));
+
+  --color-warning: oklch(var(--warning));
+  --color-warning-foreground: oklch(var(--warning-foreground));
+
+  --color-error: oklch(var(--error));
+  --color-error-foreground: oklch(var(--error-foreground));
+
+  --color-ring: oklch(var(--ring));
+
+  --radius-lg: calc(var(--radius));
+  --radius-md: calc(var(--radius) * 0.5);
+  --radius-sm: calc(var(--radius) * 0.25);
+}
+
+@layer base {
+  :root {
+    --background: 0.96 0.05 15;
+    --foreground: 0.15 0 264;
+
+    --muted: 0.96 0 264;
+    --muted-foreground: 0.48 0.01 264;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.15 0 264;
+
+    --border: 0.9 0 264;
+    --input: 0.9 0 264;
+
+    --card: 1 0 0;
+    --card-foreground: 0.15 0 264;
+
+    --primary: 0.15 0 264;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.96 0 264;
+    --secondary-foreground: 0.15 0 264;
+
+    --accent: 0.96 0 264;
+    --accent-foreground: 0.15 0 264;
+
+    --destructive: 0.6 0.2 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --info: 0.94 0.01 240;
+    --info-foreground: 0.55 0.2 250;
+
+    --success: 0.9 0.1 145;
+    --success-foreground: 0.35 0.15 165;
+
+    --warning: 0.89 0.1 85;
+    --warning-foreground: 0.55 0.15 40;
+
+    --error: 0.94 0.01 25;
+    --error-foreground: 0.6 0.2 25;
+
+    --ring: 0.15 0 264;
+
+    --radius: 0.5rem;
+  }
+
+  .dark,
+  [data-kb-theme="dark"] {
+    --background: 0.15 0 264;
+    --foreground: 0.98 0 0;
+
+    --muted: 0.2 0 264;
+    --muted-foreground: 0.65 0.01 264;
+
+    --accent: 0.2 0 264;
+    --accent-foreground: 0.98 0 0;
+
+    --popover: 0.15 0 264;
+    --popover-foreground: 0.98 0 0;
+
+    --border: 0.2 0 264;
+    --input: 0.2 0 264;
+
+    --card: 0.15 0 264;
+    --card-foreground: 0.98 0 0;
+
+    --primary: 0.98 0 0;
+    --primary-foreground: 0.15 0 264;
+
+    --secondary: 0.2 0 264;
+    --secondary-foreground: 0.98 0 0;
+
+    --destructive: 0.35 0.15 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --info: 0.94 0.01 240;
+    --info-foreground: 0.55 0.2 250;
+
+    --success: 0.9 0.1 145;
+    --success-foreground: 0.35 0.15 165;
+
+    --warning: 0.89 0.1 85;
+    --warning-foreground: 0.55 0.15 40;
+
+    --error: 0.94 0.01 25;
+    --error-foreground: 0.35 0.15 25;
+
+    --ring: 0.8 0 264;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    border-color: oklch(var(--border));
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+  }
+}
+
+@layer utilities {
+  .step {
+    counter-increment: step;
+  }
+
+  .step:before {
+    @apply absolute w-9 h-9 bg-muted rounded-full font-mono font-medium text-center text-base inline-flex items-center justify-center -indent-px border-4 border-background;
+    @apply ml-[-50px] mt-[-4px];
+    content: counter(step);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  border: 4px solid transparent;
+  background-clip: content-box;
+  @apply bg-accent;
+}
+
+::-webkit-scrollbar-corner {
+  display: none;
+}

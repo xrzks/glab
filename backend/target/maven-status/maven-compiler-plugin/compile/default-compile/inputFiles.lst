@@ -1,0 +1,13 @@
+/Users/simon/dev/bbw/322/gamble/backend/src/main/java/ch/bbw/sk/dto/AddBidRequest.java
+/Users/simon/dev/bbw/322/gamble/backend/src/main/java/ch/bbw/sk/App.java
+/Users/simon/dev/bbw/322/gamble/backend/src/main/java/ch/bbw/sk/exception/ValidationException.java
+/Users/simon/dev/bbw/322/gamble/backend/src/main/java/ch/bbw/sk/config/CorsConfig.java
+/Users/simon/dev/bbw/322/gamble/backend/src/main/java/ch/bbw/sk/dto/ErrorResponse.java
+/Users/simon/dev/bbw/322/gamble/backend/src/main/java/ch/bbw/sk/dto/CreateContainerRequest.java
+/Users/simon/dev/bbw/322/gamble/backend/src/main/java/ch/bbw/sk/model/Container.java
+/Users/simon/dev/bbw/322/gamble/backend/src/main/java/ch/bbw/sk/exception/GlobalExceptionHandler.java
+/Users/simon/dev/bbw/322/gamble/backend/src/main/java/ch/bbw/sk/controller/ContainerController.java
+/Users/simon/dev/bbw/322/gamble/backend/src/main/java/ch/bbw/sk/exception/ContainerNotFoundException.java
+/Users/simon/dev/bbw/322/gamble/backend/src/main/java/ch/bbw/sk/exception/InvalidBidException.java
+/Users/simon/dev/bbw/322/gamble/backend/src/main/java/ch/bbw/sk/model/Bid.java
+/Users/simon/dev/bbw/322/gamble/backend/src/main/java/ch/bbw/sk/service/ContainerService.java

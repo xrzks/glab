@@ -1,6 +1,9 @@
 ch/bbw/sk/model/Container.class
 ch/bbw/sk/App.class
 ch/bbw/sk/exception/InvalidBidException.class
+ch/bbw/sk/service/ContainerService$MockContainerData.class
+ch/bbw/sk/service/ContainerService$MockBidData.class
+ch/bbw/sk/service/ContainerService$1.class
 ch/bbw/sk/exception/GlobalExceptionHandler.class
 ch/bbw/sk/exception/ContainerNotFoundException.class
 ch/bbw/sk/model/Bid.class

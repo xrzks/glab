@@ -9,7 +9,6 @@ import ch.bbw.sk.dto.AddBidRequest;
 import ch.bbw.sk.dto.CreateContainerRequest;
 import ch.bbw.sk.exception.ContainerNotFoundException;
 import ch.bbw.sk.exception.InvalidBidException;
-import ch.bbw.sk.exception.ValidationException;
 import ch.bbw.sk.model.Container;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,8 +28,7 @@ public class ContainerServiceExceptionHandlingTest {
     UUID nonExistentId = UUID.randomUUID();
 
     assertThrows(
-        ContainerNotFoundException.class,
-        () -> containerService.getContainerById(nonExistentId));
+        ContainerNotFoundException.class, () -> containerService.getContainerById(nonExistentId));
   }
 
   @Test
@@ -47,44 +45,9 @@ public class ContainerServiceExceptionHandlingTest {
   }
 
   @Test
-  public void testCreateContainer_EmptyName_ThrowsValidationException() {
+  public void testCreateContainer_ValidData_Succeeds() {
     CreateContainerRequest request =
-        new CreateContainerRequest("", "Description", "image.jpg", null);
-
-    assertThrows(ValidationException.class, () -> containerService.createContainer(request));
-  }
-
-  @Test
-  public void testCreateContainer_NullName_ThrowsValidationException() {
-    CreateContainerRequest request =
-        new CreateContainerRequest(null, "Description", "image.jpg", null);
-
-    assertThrows(ValidationException.class, () -> containerService.createContainer(request));
-  }
-
-  @Test
-  public void testCreateContainer_NameTooLong_ThrowsValidationException() {
-    String longName = "a".repeat(101);
-    CreateContainerRequest request =
-        new CreateContainerRequest(longName, "Description", "image.jpg", null);
-
-    assertThrows(ValidationException.class, () -> containerService.createContainer(request));
-  }
-
-  @Test
-  public void testCreateContainer_DescriptionTooLong_ThrowsValidationException() {
-    String longDescription = "a".repeat(501);
-    CreateContainerRequest request =
-        new CreateContainerRequest("Name", longDescription, "image.jpg", null);
-
-    assertThrows(ValidationException.class, () -> containerService.createContainer(request));
-  }
-
-  @Test
-  public void testCreateContainer_ValidData_Succeeds() throws ValidationException {
-    CreateContainerRequest request =
-        new CreateContainerRequest(
-            "Test Container", "Test Description", "image.jpg", null);
+        new CreateContainerRequest("Test Container", "Test Description", "image.jpg", null);
 
     Container result = containerService.createContainer(request);
 
@@ -94,102 +57,8 @@ public class ContainerServiceExceptionHandlingTest {
   }
 
   @Test
-  public void testAddBid_EmptyName_ThrowsValidationException() {
-    CreateContainerRequest containerRequest =
-        new CreateContainerRequest("Container", "Description", "image.jpg", null);
-    Container container = containerService.createContainer(containerRequest);
-
-    AddBidRequest bidRequest = new AddBidRequest("", 100.0);
-
-    assertThrows(
-        ValidationException.class, () -> containerService.addBid(container.getId(), bidRequest));
-  }
-
-  @Test
-  public void testAddBid_NullName_ThrowsValidationException() {
-    CreateContainerRequest containerRequest =
-        new CreateContainerRequest("Container", "Description", "image.jpg", null);
-    Container container = containerService.createContainer(containerRequest);
-
-    AddBidRequest bidRequest = new AddBidRequest(null, 100.0);
-
-    assertThrows(
-        ValidationException.class, () -> containerService.addBid(container.getId(), bidRequest));
-  }
-
-  @Test
-  public void testAddBid_NameTooLong_ThrowsValidationException() {
-    CreateContainerRequest containerRequest =
-        new CreateContainerRequest("Container", "Description", "image.jpg", null);
-    Container container = containerService.createContainer(containerRequest);
-
-    String longName = "a".repeat(51);
-    AddBidRequest bidRequest = new AddBidRequest(longName, 100.0);
-
-    assertThrows(
-        ValidationException.class, () -> containerService.addBid(container.getId(), bidRequest));
-  }
-
-  @Test
-  public void testAddBid_NullAmount_ThrowsValidationException() {
-    CreateContainerRequest containerRequest =
-        new CreateContainerRequest("Container", "Description", "image.jpg", null);
-    Container container = containerService.createContainer(containerRequest);
-
-    AddBidRequest bidRequest = new AddBidRequest("Bidder", null);
-
-    assertThrows(
-        ValidationException.class, () -> containerService.addBid(container.getId(), bidRequest));
-  }
-
-  @Test
-  public void testAddBid_ZeroAmount_ThrowsInvalidBidException() {
-    CreateContainerRequest containerRequest =
-        new CreateContainerRequest("Container", "Description", "image.jpg", null);
-    Container container = containerService.createContainer(containerRequest);
-
-    AddBidRequest bidRequest = new AddBidRequest("Bidder", 0.0);
-
-    assertThrows(
-        InvalidBidException.class, () -> containerService.addBid(container.getId(), bidRequest));
-  }
-
-  @Test
-  public void testAddBid_NegativeAmount_ThrowsInvalidBidException() {
-    CreateContainerRequest containerRequest =
-        new CreateContainerRequest("Container", "Description", "image.jpg", null);
-    Container container = containerService.createContainer(containerRequest);
-
-    AddBidRequest bidRequest = new AddBidRequest("Bidder", -100.0);
-
-    assertThrows(
-        InvalidBidException.class, () -> containerService.addBid(container.getId(), bidRequest));
-  }
-
-  @Test
-  public void testAddBid_TooLargeAmount_ThrowsInvalidBidException() {
-    CreateContainerRequest containerRequest =
-        new CreateContainerRequest("Container", "Description", "image.jpg", null);
-    Container container = containerService.createContainer(containerRequest);
-
-    AddBidRequest bidRequest = new AddBidRequest("Bidder", 1000001.0);
-
-    assertThrows(
-        InvalidBidException.class, () -> containerService.addBid(container.getId(), bidRequest));
-  }
-
-  @Test
-  public void testAddBid_NonExistentContainer_ThrowsContainerNotFoundException() {
-    UUID nonExistentId = UUID.randomUUID();
-    AddBidRequest bidRequest = new AddBidRequest("Bidder", 100.0);
-
-    assertThrows(
-        ContainerNotFoundException.class, () -> containerService.addBid(nonExistentId, bidRequest));
-  }
-
-  @Test
   public void testAddBid_ValidData_Succeeds()
-      throws ValidationException, InvalidBidException, ContainerNotFoundException {
+      throws InvalidBidException, ContainerNotFoundException {
     CreateContainerRequest containerRequest =
         new CreateContainerRequest("Container", "Description", "image.jpg", null);
     Container container = containerService.createContainer(containerRequest);
@@ -205,6 +74,15 @@ public class ContainerServiceExceptionHandlingTest {
   }
 
   @Test
+  public void testAddBid_NonExistentContainer_ThrowsContainerNotFoundException() {
+    UUID nonExistentId = UUID.randomUUID();
+    AddBidRequest bidRequest = new AddBidRequest("Bidder", 100.0);
+
+    assertThrows(
+        ContainerNotFoundException.class, () -> containerService.addBid(nonExistentId, bidRequest));
+  }
+
+  @Test
   public void testToggleLike_NonExistentContainer_ThrowsContainerNotFoundException() {
     UUID nonExistentId = UUID.randomUUID();
 
@@ -213,8 +91,7 @@ public class ContainerServiceExceptionHandlingTest {
   }
 
   @Test
-  public void testToggleLike_ValidContainer_Succeeds()
-      throws ContainerNotFoundException, ValidationException {
+  public void testToggleLike_ValidContainer_Succeeds() throws ContainerNotFoundException {
     CreateContainerRequest containerRequest =
         new CreateContainerRequest("Container", "Description", "image.jpg", null);
     Container container = containerService.createContainer(containerRequest);

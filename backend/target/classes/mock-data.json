@@ -1,0 +1,75 @@
+[
+	{
+		"name": "Container 1",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+		"mainImage": "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800",
+		"thumbnails": [
+			"https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=200",
+			"https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=200",
+			"https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=200"
+		],
+		"bids": [
+			{ "name": "John Doe", "amount": 500.0 },
+			{ "name": "Jane Smith", "amount": 750.0 },
+			{ "name": "Bob Wilson", "amount": 1000.0 }
+		],
+		"liked": true
+	},
+	{
+		"name": "Container 2",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+		"mainImage": "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800",
+		"thumbnails": [
+			"https://images.unsplash.com/photo-1552346154-21d32810aba3?w=200",
+			"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=200"
+		],
+		"bids": [
+			{ "name": "Alice Johnson", "amount": 1200.0 },
+			{ "name": "Charlie Brown", "amount": 1500.0 }
+		],
+		"liked": false
+	},
+	{
+		"name": "Container 3",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+		"mainImage": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800",
+		"thumbnails": [
+			"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=200",
+			"https://images.unsplash.com/photo-1495707902641-75cac588d2e9?w=200",
+			"https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=200"
+		],
+		"bids": [
+			{ "name": "David Lee", "amount": 300.0 },
+			{ "name": "Emma Davis", "amount": 450.0 },
+			{ "name": "Frank Miller", "amount": 600.0 },
+			{ "name": "Grace Kim", "amount": 800.0 }
+		],
+		"liked": true
+	},
+	{
+		"name": "Container 4",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+		"mainImage": "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=800",
+		"thumbnails": [
+			"https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=200",
+			"https://images.unsplash.com/photo-1611457194403-d3f156e50cae?w=200"
+		],
+		"bids": [{ "name": "Henry Ford", "amount": 18000.0 }],
+		"liked": false
+	},
+	{
+		"name": "Container 5",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+		"mainImage": "https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=800",
+		"thumbnails": [
+			"https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=200",
+			"https://images.unsplash.com/photo-1619983081563-430f63602796?w=200",
+			"https://images.unsplash.com/photo-1571330735066-03aaa9429d89?w=200"
+		],
+		"bids": [
+			{ "name": "Ivy Chen", "amount": 50.0 },
+			{ "name": "Jack Taylor", "amount": 75.0 }
+		],
+		"liked": true
+	}
+]

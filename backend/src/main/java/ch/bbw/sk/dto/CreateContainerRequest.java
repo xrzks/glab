@@ -1,6 +1,5 @@
 package ch.bbw.sk.dto;
 
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import java.util.List;
@@ -42,8 +41,6 @@ public class CreateContainerRequest {
   public void setDescription(String description) {
     this.description = description;
   }
-
-
 
   public String getMainImage() {
     return mainImage;

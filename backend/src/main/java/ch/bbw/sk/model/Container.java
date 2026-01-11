@@ -13,8 +13,6 @@ public class Container {
 
   private String description;
 
-
-
   private String mainImage;
 
   private List<String> thumbnails = new ArrayList<>();
@@ -30,11 +28,7 @@ public class Container {
   public Container() {}
 
   public Container(
-      UUID id,
-      String name,
-      String description,
-      String mainImage,
-      List<String> thumbnails) {
+      UUID id, String name, String description, String mainImage, List<String> thumbnails) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -68,8 +62,6 @@ public class Container {
   public void setDescription(String description) {
     this.description = description;
   }
-
-
 
   public String getMainImage() {
     return mainImage;
@@ -127,15 +119,6 @@ public class Container {
 
   public void toggleLike() {
     this.liked = !this.liked;
-    this.updatedAt = Instant.now();
-  }
-
-  public void update(
-      String name, String description, String mainImage, List<String> thumbnails) {
-    if (name != null) this.name = name;
-    if (description != null) this.description = description;
-    if (mainImage != null) this.mainImage = mainImage;
-    if (thumbnails != null) this.thumbnails = thumbnails;
     this.updatedAt = Instant.now();
   }
 }

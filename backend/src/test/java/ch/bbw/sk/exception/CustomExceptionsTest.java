@@ -3,6 +3,7 @@ package ch.bbw.sk.exception;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
 public class CustomExceptionsTest {
@@ -20,8 +21,7 @@ public class CustomExceptionsTest {
   public void testContainerNotFoundExceptionWithCause() {
     String message = "Container not found";
     Throwable cause = new RuntimeException("Database error");
-    ContainerNotFoundException exception =
-        new ContainerNotFoundException(message, cause);
+    ContainerNotFoundException exception = new ContainerNotFoundException(message, cause);
 
     assertNotNull(exception);
     assertEquals(message, exception.getMessage());

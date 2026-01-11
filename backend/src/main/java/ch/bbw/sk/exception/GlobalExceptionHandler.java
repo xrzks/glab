@@ -1,8 +1,8 @@
 package ch.bbw.sk.exception;
 
 import ch.bbw.sk.dto.ErrorResponse;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -35,32 +35,17 @@ public class GlobalExceptionHandler {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
   }
 
-  @ExceptionHandler(IllegalArgumentException.class)
-  public ResponseEntity<ErrorResponse> handleIllegalArgumentException(
-      IllegalArgumentException ex) {
-    ErrorResponse error =
-        new ErrorResponse(HttpStatus.BAD_REQUEST.value(), "Bad Request", ex.getMessage());
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
-  }
-
   @ExceptionHandler(MethodArgumentNotValidException.class)
-  public ResponseEntity<Map<String, Object>> handleValidationExceptions(
+  public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(
       MethodArgumentNotValidException ex) {
-    Map<String, Object> response = new HashMap<>();
-    Map<String, String> errors = new HashMap<>();
-
-    ex.getBindingResult().getAllErrors().forEach((error) -> {
-      String fieldName = ((FieldError) error).getField();
-      String errorMessage = error.getDefaultMessage();
-      errors.put(fieldName, errorMessage);
-    });
-
-    response.put("status", HttpStatus.BAD_REQUEST.value());
-    response.put("error", "Validation Failed");
-    response.put("timestamp", java.time.Instant.now().toString());
-    response.put("errors", errors);
-
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    List<String> errors =
+        ex.getBindingResult().getFieldErrors().stream()
+            .map(FieldError::getDefaultMessage)
+            .collect(Collectors.toList());
+    ErrorResponse error =
+        new ErrorResponse(
+            HttpStatus.BAD_REQUEST.value(), "Validation Error", String.join(", ", errors));
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
   }
 
   @ExceptionHandler(Exception.class)
